@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/26 13:31:00 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:14:31 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char *argv[])
 		return (ft_printf("Error: Paramater Unnecessary."), EXIT_FAILURE);
 	server_pid = getpid();
 	ft_printf("Server ProcessID: %d\n", server_pid);
+// INSERT	signaltreatment(void);
 	while (argc == 1)
 	{
 		signal(SIGUSR1, signal_handler);
@@ -52,4 +53,21 @@ signal(int signum, void(*handler)(int)) tells the OS what to do
   when a signal arrives
 	1. signum, signal number to be handled SIGUSR1 or SIGUSR2
 	2, handler, function called when signal is received
+*/
+
+/*
+	NOTE: Implement Signal Treatmeant the same as Xyckens github
+		1. Study sigaction, purpose and utilization
+
+void	signaltreatment(void)
+{
+	struct sigaction	action;
+
+	action.sa_handler = &handler;
+	action.sa_flags = SA_SIGINFO;
+	if (sigaction(SIGUSR1, &action, NULL) == -1)
+		exit(1);
+	if (sigaction(SIGUSR2, &action, NULL) == -1)
+		exit(1);
+}
 */
