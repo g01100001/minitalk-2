@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/25 15:25:23 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:31:00 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 
 	(void)argv;
 	if (!(argc == 1))
-		return (fputs("Error: Remove a parameter.", stderr), EXIT_FAILURE);
+		return (ft_printf("Error: Paramater Unnecessary."), EXIT_FAILURE);
 	server_pid = getpid();
 	ft_printf("Server ProcessID: %d\n", server_pid);
 	while (argc == 1)

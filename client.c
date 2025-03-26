@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:21:38 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/22 00:14:56 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:28:08 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[])
 
 	if (!(argc == 3))
 	{
-		fputs("Utilization: ./client <server-pid> \"message\"\n", stderr);
+		ft_printf("Utilization: ./client <server-pid> \"message\"\n");
 		exit(EXIT_FAILURE);
 	}
 	if (argc == 3)

@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:05:58 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/25 15:24:40 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/26 13:24:48 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 # include <stdio.h> //tests
 # include <limits.h> //variable constants. e.g. CHAR_BIT
 
-void    ft_kill(pid_t pid, int signumber);
+void	ft_kill(pid_t pid, int signumber);
 //void    affirmation(int signumber);
 
 #endif
-
