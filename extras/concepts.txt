@@ -1,0 +1,80 @@
+
+
+1.	a. 1001
+	b. 1111
+	c. 0100
+	d. 1001
+	
+2. 	a. 1100
+	b. 0100
+	c. 1100
+	d. 0010
+
+3.	A xor B = 0000
+	A xor C = 0110
+	Since A xor B is equal to B xor A, and
+	B xor C = A xor C. Then C is different. 
+
+4.	a. (1010 >> 4) | 0001 = 0001
+	b. ~1010 & 0000 = 0000
+	
+5.	a. B = A ^ 0000;
+	   A = B ^ 0000;
+	   
+6. 	
+	Since the last rightmost digit of binary is 2^0 = 1.
+	Thus, when we compare a binary set to & 1, and gets 1 on the last digit which totals to even + 1.
+	Therefore, the whole sequence of binary is odd assuming the rightmost digit of binary is set. 
+
+	a. 1010 & 0001 = 0000 therefore even
+	b. 0111 & 0001 = 0001 therefore odd
+	c. 1000 & 0001 = 0000 therefore even
+	d. 0101 & 0001 = 0001 therefore odd
+
+	Answer:
+	Binary numbers are odd if their last (rightmost) bit is 1 (2⁰ = 1).
+	Thus, binary numbers are even if their last bit is 0.
+	Using "& 1" comparison, isolates that last bit to check if it's 1 (odd) or 0 (even).
+	Note: 00000001 == 1 and 00000000 == 0. 
+
+7. 	(11001100 >> 4) = 00001100
+
+
+---------------------------
+
+1. Use a handler to indicate that SIGUSR1 -> bit 1 SIGUSR2 -> 2
+
+		void	signal_handler(int sig_bit)
+
+2. Static variables retain information every time the function is called,
+		instead of resetting it, or initializing it to zero if declared normally.
+
+3. By using EXIT_SUCCESS = 0; and EXIT_FAILURE = 1;
+		it is in accordance to ISO c66 & UNIX Standards.
+
+---------------------------
+
+An alternate way to do Minitalk client-server communication.
+
+I. Send the size of the text to the server for malloc.
+
+II. Send the size of malloc to be followed by a non-character binary of either
+   00000000 or 11111111 (malloc size & message are separated by a non-chracter)
+
+33 (00000000) 01000101 01110110 01100101 01101110 01110100 01100001 01101100
+01101100 01101100 01111001 00101100 00100000 01001001 00100111 01101100
+01101100 00100000 01110100 01110010 01100001 01100011 01101011 00100000
+01101001 01110100 00100000 01100100 01101111 01110111 01101110 00101110
+
+which translates to UTF-8 (31 characters) <"Eventually, I’ll track it down.">
+
+III. Then convert binary (bytes) to decimal. 
+
+---------------------------
+
+Execute test on zsh terminal:
+
+1. Input text on file "test"
+2. source test
+3. echo $SCRIPT_TEST
+4. ./client PID $SCRIPT_TEST

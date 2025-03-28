@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/26 15:14:31 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:45:40 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ void	signal_handler(int sig_bit)
 	}
 }
 
+void	signal_utility(void)
+{
+	struct sigaction	sail;
+
+	sail.sa_handler = signal_handler;
+	sail.sa_flags = SA_RESTART | SA_SIGINFO;
+	sigemptyset(&sail.sa_mask);
+	if (sigaction(SIGUSR1, &sail, NULL) == -1)
+	{
+		ft_printf("Error: sigaction SIGUSR1\n");
+		exit(EXIT_FAILURE);
+	}
+	if (sigaction(SIGUSR2, &sail, NULL) == -1)
+	{
+		ft_printf("Error: sigaction SIGUSR2\n");
+		exit(EXIT_FAILURE);
+	}
+	ft_printf("SIGNAL UTILITY WORKING!");	//Delete after checking 
+}
+
 int	main(int argc, char *argv[])
 {
 	pid_t	server_pid;
@@ -39,7 +59,7 @@ int	main(int argc, char *argv[])
 		return (ft_printf("Error: Paramater Unnecessary."), EXIT_FAILURE);
 	server_pid = getpid();
 	ft_printf("Server ProcessID: %d\n", server_pid);
-// INSERT	signaltreatment(void);
+	signal_utility();
 	while (argc == 1)
 	{
 		signal(SIGUSR1, signal_handler);
