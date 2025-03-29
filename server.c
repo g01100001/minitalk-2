@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/28 15:45:40 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/29 03:01:07 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	signal_utility(void)
 		ft_printf("Error: sigaction SIGUSR2\n");
 		exit(EXIT_FAILURE);
 	}
-	ft_printf("SIGNAL UTILITY WORKING!");	//Delete after checking 
 }
 
 int	main(int argc, char *argv[])
@@ -62,8 +61,8 @@ int	main(int argc, char *argv[])
 	signal_utility();
 	while (argc == 1)
 	{
-		signal(SIGUSR1, signal_handler);
-		signal(SIGUSR2, signal_handler);
+//		signal(SIGUSR1, signal_handler);
+//		signal(SIGUSR2, signal_handler);
 		pause();
 	}
 	return (EXIT_SUCCESS);
@@ -74,20 +73,7 @@ signal(int signum, void(*handler)(int)) tells the OS what to do
 	1. signum, signal number to be handled SIGUSR1 or SIGUSR2
 	2, handler, function called when signal is received
 */
-
 /*
 	NOTE: Implement Signal Treatmeant the same as Xyckens github
 		1. Study sigaction, purpose and utilization
-
-void	signaltreatment(void)
-{
-	struct sigaction	action;
-
-	action.sa_handler = &handler;
-	action.sa_flags = SA_SIGINFO;
-	if (sigaction(SIGUSR1, &action, NULL) == -1)
-		exit(1);
-	if (sigaction(SIGUSR2, &action, NULL) == -1)
-		exit(1);
-}
 */

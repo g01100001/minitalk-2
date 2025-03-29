@@ -6,7 +6,7 @@
 #    By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 17:30:52 by gomandam          #+#    #+#              #
-#    Updated: 2025/03/21 23:10:04 by gomandam         ###   ########.fr        #
+#    Updated: 2025/03/29 03:27:24 by gomandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,17 +34,19 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@ echo "Execute: Minitalk."
+	@ echo "MINITALK Executed Successfully."
 	@ ar rcs $(NAME) $(OBJECTS) > /dev/null 2>&1
 
 # @ echo " " -> prints description
 # @ COMMAND > /dev/null 2>&1 -> silences notifications
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@ echo "Compilation Complete. For the horde."
+	@ $(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
 
 clean:
-	$(RM) $(OBJECTS)
+	@ $(RM) $(OBJECTS) > /dev/null 2>&1
+	@ echo "Power Overwhelming. Objects Exterminated."
 
 fclean:
 	$(RM) $(NAME)
