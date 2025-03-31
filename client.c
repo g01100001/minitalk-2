@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
+/*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:21:38 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/26 13:28:08 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/31 23:41:04 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //CLIENT: Talks to the server and transmits bits in series of signals.
 
 #include "minitalk.h"
+
+volatile sig_atomic_t	_global = 0;
+
+void	sigusr1_handler(int signal_nbr)
+{
+	(void)signal_nbr;
+	_global = 1;
+}
 
 void	ft_fax(pid_t server_pid, unsigned char c)
 {
@@ -26,6 +34,9 @@ void	ft_fax(pid_t server_pid, unsigned char c)
 		else
 			ft_kill(server_pid, SIGUSR2);
 		usleep(_POSIX);
+		while (!_global)
+			pause();
+		_global = 0;
 		bit++;
 	}
 }
@@ -44,6 +55,7 @@ int	main(int argc, char *argv[])
 	{
 		server_pid = ft_atoi(argv[1]);
 		message = argv[2];
+		signal(SIGUSR1, sigusr1_handler);
 		while (*message)
 			ft_fax(server_pid, *message++);
 		ft_fax(server_pid, '\n');
@@ -51,4 +63,16 @@ int	main(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
+/*
+
 //facsimile (defn.) copy and digital transmission of a material.
+
+//volatile sig_atomic_t	_global = 0;
+	handle global changes, sets _global upon receiving SIGUSR1;
+		ft_fax waits for signal to be set before sending
+		while(!_global) -> the pause is signal acknowledgment
+//atomic updates - operations of single and indivisible step.
+	No interruptions, the variable is read or written in one step.
+	Safety in cases of multi-thread environments. 
+*/ 
+

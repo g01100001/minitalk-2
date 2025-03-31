@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
+/*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/29 03:01:07 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/03/31 23:46:25 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	signal_handler(int sig_bit)
 	if (sig_bit == SIGUSR1)
 		c |= (0x01 << bit);
 	bit++;
-	if (bit == 8)
+	if (bit == CHAR_BIT)
 	{
 		ft_printf("%c", c);
 		bit = 0;
@@ -30,12 +30,12 @@ void	signal_handler(int sig_bit)
 	}
 }
 
-void	signal_utility(void)
+void	signal_utility(void)		//fails if either sigusr1 & 2 are invalid
 {
 	struct sigaction	sail;
 
 	sail.sa_handler = signal_handler;
-	sail.sa_flags = SA_RESTART | SA_SIGINFO;
+	sail.sa_flags = SA_RESTART;
 	sigemptyset(&sail.sa_mask);
 	if (sigaction(SIGUSR1, &sail, NULL) == -1)
 	{
@@ -59,12 +59,8 @@ int	main(int argc, char *argv[])
 	server_pid = getpid();
 	ft_printf("Server ProcessID: %d\n", server_pid);
 	signal_utility();
-	while (argc == 1)
-	{
-//		signal(SIGUSR1, signal_handler);
-//		signal(SIGUSR2, signal_handler);
+	while (1)
 		pause();
-	}
 	return (EXIT_SUCCESS);
 }
 /*
@@ -73,7 +69,20 @@ signal(int signum, void(*handler)(int)) tells the OS what to do
 	1. signum, signal number to be handled SIGUSR1 or SIGUSR2
 	2, handler, function called when signal is received
 */
+
 /*
 	NOTE: Implement Signal Treatmeant the same as Xyckens github
 		1. Study sigaction, purpose and utilization
+
+void	signaltreatment(void)
+{
+	struct sigaction	action;
+
+	action.sa_handler = &handler;
+	action.sa_flags = SA_SIGINFO;
+	if (sigaction(SIGUSR1, &action, NULL) == -1)
+		exit(1);
+	if (sigaction(SIGUSR2, &action, NULL) == -1)
+		exit(1);
+}
 */
