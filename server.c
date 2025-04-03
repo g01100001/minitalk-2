@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/31 23:46:25 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:29:56 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 #include "minitalk.h"
 
-void	signal_handler(int sig_bit)
+void	signal_handler(int sig_bit, siginfo_t *info, void *context)
 {
 	static int	bit = 0;
 	static int	c = 0;
 
+	(void)context;
 	if (sig_bit == SIGUSR1)
 		c |= (0x01 << bit);
 	bit++;
@@ -27,15 +28,16 @@ void	signal_handler(int sig_bit)
 		ft_printf("%c", c);
 		bit = 0;
 		c = 0;
+		ft_kill(info->si_pid, SIGUSR1);
 	}
 }
 
-void	signal_utility(void)		//fails if either sigusr1 & 2 are invalid
+void	signal_treatment(void)
 {
 	struct sigaction	sail;
 
-	sail.sa_handler = signal_handler;
-	sail.sa_flags = SA_RESTART;
+	sail.sa_sigaction = signal_handler;
+	sail.sa_flags = SA_SIGINFO | SA_RESTART;
 	sigemptyset(&sail.sa_mask);
 	if (sigaction(SIGUSR1, &sail, NULL) == -1)
 	{
@@ -57,8 +59,8 @@ int	main(int argc, char *argv[])
 	if (!(argc == 1))
 		return (ft_printf("Error: Paramater Unnecessary."), EXIT_FAILURE);
 	server_pid = getpid();
-	ft_printf("Server ProcessID: %d\n", server_pid);
-	signal_utility();
+	ft_printf("Server Process-ID: %d\n", server_pid);
+	signal_treatment();
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);
@@ -69,12 +71,11 @@ signal(int signum, void(*handler)(int)) tells the OS what to do
 	1. signum, signal number to be handled SIGUSR1 or SIGUSR2
 	2, handler, function called when signal is received
 */
-
 /*
 	NOTE: Implement Signal Treatmeant the same as Xyckens github
 		1. Study sigaction, purpose and utilization
 
-void	signaltreatment(void)
+void	signal_treatment(void) //fails if either sigusr1 & 2 are invalid
 {
 	struct sigaction	action;
 

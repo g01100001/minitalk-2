@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:21:38 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/31 23:41:04 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:32:48 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 #include "minitalk.h"
 
-volatile sig_atomic_t	_global = 0;
+volatile sig_atomic_t	g_sigcon = 0;
 
 void	sigusr1_handler(int signal_nbr)
 {
 	(void)signal_nbr;
-	_global = 1;
+	g_sigcon = 1;
 }
 
 void	ft_fax(pid_t server_pid, unsigned char c)
@@ -34,17 +34,18 @@ void	ft_fax(pid_t server_pid, unsigned char c)
 		else
 			ft_kill(server_pid, SIGUSR2);
 		usleep(_POSIX);
-		while (!_global)
+		while (!g_sigcon)
 			pause();
-		_global = 0;
+		g_sigcon = 0;
 		bit++;
 	}
 }
 
 int	main(int argc, char *argv[])
 {
-	char	*message;
-	pid_t	server_pid;
+	char				*message;
+	pid_t				server_pid;
+	struct sigaction	sail;
 
 	if (!(argc == 3))
 	{
@@ -55,14 +56,15 @@ int	main(int argc, char *argv[])
 	{
 		server_pid = ft_atoi(argv[1]);
 		message = argv[2];
-		signal(SIGUSR1, sigusr1_handler);
+		sail.sa_handler = sigusr1_handler;
+		sail.sa_flags = SA_RESTART;
+		sigaction(SIGUSR1, &sail, NULL); /*signal(SIGUSR1, sigusr1_handler);*/
 		while (*message)
 			ft_fax(server_pid, *message++);
 		ft_fax(server_pid, '\n');
 	}
 	return (EXIT_SUCCESS);
 }
-
 /*
 
 //facsimile (defn.) copy and digital transmission of a material.
@@ -74,5 +76,4 @@ int	main(int argc, char *argv[])
 //atomic updates - operations of single and indivisible step.
 	No interruptions, the variable is read or written in one step.
 	Safety in cases of multi-thread environments. 
-*/ 
-
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_signal_utility.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
+/*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 21:13:33 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/21 22:33:03 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/01 16:05:53 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
                 if (info -> si_pid)
                         server = info -> si_pid;
 */
-void	ft_kill(pid_t pid, int signumber)
+void	ft_kill(pid_t pid, int sigusr_nbr)
 {
-	if (kill(pid, signumber) < 0)
+	if (kill(pid, sigusr_nbr) < 0)
 	{
-		fputs("Transmisison failed.\n", stderr);
-		fputs("Reflect on your life choices.\n", stderr);
+		ft_printf("Transmission failed. Check Process-ID.\n");
+		ft_printf("Or perhaps, reflect on your life choices.\n");
 		exit(EXIT_FAILURE);
 	}
 }
