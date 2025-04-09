@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:21:38 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/01 16:32:48 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:59:08 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ int	main(int argc, char *argv[])
 		message = argv[2];
 		sail.sa_handler = sigusr1_handler;
 		sail.sa_flags = SA_RESTART;
-		sigaction(SIGUSR1, &sail, NULL); /*signal(SIGUSR1, sigusr1_handler);*/
+		sigemptyset(&sail.sa_mask);
+		if (sigaction(SIGUSR1, &sail, NULL) == -1)	/*signal(SIGUSR1, sigusr1_handler);*/
+		{
+			ft_printf("Error: signal setup failed.");
+			return (EXIT_FAILURE);
+		}
 		while (*message)
 			ft_fax(server_pid, *message++);
 		ft_fax(server_pid, '\n');
