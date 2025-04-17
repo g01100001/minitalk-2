@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/09 12:48:58 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/17 03:19:32 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	signal_handler(int sig_bit, siginfo_t *info, void *context)
 	if (bit == CHAR_BIT)
 	{
 		if (c == '\0')
-			ft_printf("End of message.", c);
+			ft_printf("\n-end-");
 		else
 			ft_printf("%c", c);
 		bit = 0;
 		c = 0;
-		ft_kill(info->si_pid, SIGUSR1);
 	}
+	ft_kill(info->si_pid, SIGUSR1);
 }
 
 void	signal_treatment(void)

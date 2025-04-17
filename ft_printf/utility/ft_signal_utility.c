@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 21:13:33 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/01 16:05:53 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:01:52 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_kill(pid_t pid, int sigusr_nbr)
 {
 	if (kill(pid, sigusr_nbr) < 0)
 	{
-		ft_printf("Transmission failed. Check Process-ID.\n");
-		ft_printf("Or perhaps, reflect on your life choices.\n");
+		ft_printf("Transmission failed.\n");
+		ft_printf("Reflect on your life choices.\n");
 		exit(EXIT_FAILURE);
 	}
 }
