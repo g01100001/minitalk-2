@@ -6,13 +6,13 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:05:58 by gomandam          #+#    #+#             */
-/*   Updated: 2025/03/31 23:42:22 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/12 22:05:08 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
-# define _POSIX 10000 //POSIX (IEEE Std 1003.1-2001) valid range 1->1e6
+# define _POSIX 50000 //POSIX (IEEE Std 1003.1-2001) valid range 1->1e6
 
 # include "./ft_printf/ft_printf.h" //ft_printf dependencies
 # include <unistd.h> //write, pause

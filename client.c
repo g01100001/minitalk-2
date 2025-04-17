@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:21:38 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/09 12:59:08 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/17 03:20:20 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char *argv[])
 		}
 		while (*message)
 			ft_fax(server_pid, *message++);
-		ft_fax(server_pid, '\n');
+		ft_fax(server_pid, '\0');
 	}
 	return (EXIT_SUCCESS);
 }
