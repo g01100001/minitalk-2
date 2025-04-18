@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:19:29 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/17 03:19:32 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:19:06 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	signal_handler(int sig_bit, siginfo_t *info, void *context)
 	if (bit == CHAR_BIT)
 	{
 		if (c == '\0')
-			ft_printf("\n-end-");
+			ft_printf("\nEND-CORE.\n\n");
 		else
 			ft_printf("%c", c);
 		bit = 0;
@@ -69,24 +69,14 @@ int	main(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 /*
-signal(int signum, void(*handler)(int)) tells the OS what to do 
-  when a signal arrives
+sigaction() system call better than signal(). Defines the process of signals
+	- customize signal handlers, use flags, control signal behaviors 
+signal(int signum, void(*handler)(int))
+  	- tells the OS what to do when a signal arrives
 	1. signum, signal number to be handled SIGUSR1 or SIGUSR2
 	2, handler, function called when signal is received
-*/
-/*
-	NOTE: Implement Signal Treatmeant the same as Xyckens github
-		1. Study sigaction, purpose and utilization
-
-void	signal_treatment(void) //fails if either sigusr1 & 2 are invalid
-{
-	struct sigaction	action;
-
-	action.sa_handler = &handler;
-	action.sa_flags = SA_SIGINFO;
-	if (sigaction(SIGUSR1, &action, NULL) == -1)
-		exit(1);
-	if (sigaction(SIGUSR2, &action, NULL) == -1)
-		exit(1);
-}
+SA_SIGINFO
+	- invokes sig-number, siginfo_t *, and void *context (attributes) 
+SA_RESTART
+	- restarts call if signal is interrupted, useful when blocking or bitmasking
 */

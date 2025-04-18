@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:21:38 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/17 03:20:20 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:25:35 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ int	main(int argc, char *argv[])
 	struct sigaction	sail;
 
 	if (!(argc == 3))
-	{
-		ft_printf("Utilization: ./client <server-pid> \"message\"\n");
-		exit(EXIT_FAILURE);
-	}
+		return (ft_printf("./client <server-pid> \"message\"\n"), EXIT_FAILURE);
 	if (argc == 3)
 	{
 		server_pid = ft_atoi(argv[1]);
@@ -59,9 +56,9 @@ int	main(int argc, char *argv[])
 		sail.sa_handler = sigusr1_handler;
 		sail.sa_flags = SA_RESTART;
 		sigemptyset(&sail.sa_mask);
-		if (sigaction(SIGUSR1, &sail, NULL) == -1)	/*signal(SIGUSR1, sigusr1_handler);*/
+		if (sigaction(SIGUSR1, &sail, NULL) == -1)
 		{
-			ft_printf("Error: signal setup failed.");
+			ft_printf("Error: SIGNAL setup terminated.");
 			return (EXIT_FAILURE);
 		}
 		while (*message)
@@ -81,4 +78,7 @@ int	main(int argc, char *argv[])
 //atomic updates - operations of single and indivisible step.
 	No interruptions, the variable is read or written in one step.
 	Safety in cases of multi-thread environments. 
+
+//instead of using signal(SIGUSR1, handler) -> sigaction(SIGUSR1, &sail, NULL)
+
 */

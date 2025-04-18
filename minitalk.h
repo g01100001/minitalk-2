@@ -6,7 +6,7 @@
 /*   By: gomandam <gomandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 18:05:58 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/17 04:03:35 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:35:30 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdio.h> //tests
 # include <limits.h> //variable constants. e.g. CHAR_BIT
 # include <string.h> //calloc (reprised)
+
 void	ft_kill(pid_t pid, int signumber);
-//void    affirmation(int signumber);
 
 #endif

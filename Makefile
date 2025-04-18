@@ -6,7 +6,7 @@
 #    By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 17:30:52 by gomandam          #+#    #+#              #
-#    Updated: 2025/04/17 04:17:10 by gomandam         ###   ########.fr        #
+#    Updated: 2025/04/18 22:21:06 by gomandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRC = 	server.c \
 	ft_printf/utility/ft_putstr.c \
 	ft_printf/utility/ft_atoi.c \
 	ft_printf/utility/ft_signal_utility.c \
-
-//SRC for BONUS PART
+	bonus/client_bonus.c \
+	bonus/server_bonus.c \
 
 OBJECTS = $(SRC:.c=.o)
 
