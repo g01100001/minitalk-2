@@ -6,13 +6,13 @@
 /*   By: gomandam <gomandam@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 02:43:36 by gomandam          #+#    #+#             */
-/*   Updated: 2025/04/17 03:51:58 by gomandam         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:33:44 by gomandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../minitalk.h"
 
-volatile sig_atomic_t	g_acknowledged = 0;
+volatile sig_atomic_t g_acknowledged = 0;
 
 void	sigusr1_handler(int signal_nbr)
 {
