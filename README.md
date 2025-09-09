@@ -11,7 +11,6 @@
 	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/surfi89/minitalk?color=critical" />
 	<img alt="Code language count" src="https://img.shields.io/github/languages/count/surfi89/minitalk?color=yellow" />
 	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/surfi89/minitalk?color=blue" />
-	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/surfi89/minitalk?color=green" />
 </p>
 
 <h3 align="center">
